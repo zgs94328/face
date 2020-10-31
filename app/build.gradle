@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId  "com.yangguangyulu.sunoleducation"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1000
+        versionName "3.3.0.0"
+
+    }
+
+    signingConfigs {
+
+
+        debug {
+            storeFile file('sunoledu.jks')
+            storePassword "ygyl2019"
+            keyAlias "sunoleducation"
+            keyPassword "ygyl2019"
+        }
+        release {
+            storeFile file('sunoledu.jks')
+            storePassword "ygyl2019"
+            keyAlias "sunoleducation"
+            keyPassword "ygyl2019"
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+            debuggable true
+            jniDebuggable true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            debuggable false
+            jniDebuggable false
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:recyclerview-v7:25.2.0'
+    compile project(path: ':faceplatform-ui')
+}
